@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Yelp Predict Business Rating</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Yelp Predict Business Rating">
+  <meta name="author" content="The Clown Bongo">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Yelp Predict Business Rating</h1>
+    <h2></h2>
+    <p>The Clown Bongo<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Background and Models</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The data comes from the Yelp Dataset Challenge. Out of the data sets, only the data on businesses and reviews for those buinesses were used.
+The data was split into training and testing sets with a ratio of 60/40. </p>
+
+<p>Using the training set, classification support vector machines and random Forest models were derived. The businesses rating are from 1 to 5 with an increment of .5 that were treated as factors while building the models. </p>
+
+<p>The support vector machines model is a radial kernel C-Classification 10-fold cross-validation. The in-sample accuracy is 78.58% and in-sample error of 21.42%. The out-of sample accuracy is 78.46% and out-of-sample error of 21.54%. </p>
+
+<p>The random Forest model is a classification with 500 trees and number of variables tried at each split 3. The out-of-bag estimate is 20.12%. The in-sample accuracy is 98.43% and in-sample error of .57%. The out-of-sample accuracy is 79.14% and out-of-sample error of 20.86%.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Plot of Actual Ratings Versus Predicted</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The predicted rating of a business is obtained from a random Forest model.</p>
+
+<p><img src="assets/fig/read_data_plot-1.png" title="plot of chunk read_data_plot" alt="plot of chunk read_data_plot" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Error Information on Testing Set</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Support vector Machines</p>
+
+<pre><code>##             1 Star 1.5 Stars 2 Stars 2.5 Stars 3 Stars 3.5 Stars 4 Stars
+## Sensitivity 88.48%    66.59%  66.58%    68.76%  72.00%    78.41%  78.57%
+## Specificity 99.59%    99.56%  98.86%    97.51%   0.96%    93.65%  94.28%
+##             4.5 Stars 5 Stars
+## Sensitivity    80.18%  93.53%
+## Specificity    96.61%  98.15%
+</code></pre>
+
+<p>Random Forest</p>
+
+<pre><code>##             1 Star 1.5 Stars 2 Stars 2.5 Stars 3 Stars 3.5 Stars 4 Stars
+## Sensitivity 70.89%    76.46%  67.78%    74.01%  74.78%    78.66%  80.60%
+## Specificity 99.91%    99.42%  98.79%    97.10%  96.04%    94.32%  94.56%
+##             4.5 Stars 5 Stars
+## Sensitivity    83.66%  87.98%
+## Specificity    96.47%  99.29%
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Are Both Models Equivalent? Can They Be Improved?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The support vector machines and random Forest models provide pretty similar out-of sample errors, with an accuracy around 78-79%. The in-sample error for the support vector machines model is much larger than for the random Forest one but is consistent with the out-of sample error since it is a 10-fold cross-validation. By including more information like the field vote.useful and mining the text of the review for specific words like best and worst, one could weight more or less some reviews.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Background and Models'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Plot of Actual Ratings Versus Predicted'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Error Information on Testing Set'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Are Both Models Equivalent? Can They Be Improved?'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
